@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "target": "esnext",
+    "strictNullChecks": false,
+    "jsx": "preserve",
+    "module": "esnext",
+    "lib": ["esnext", "dom", "dom.iterable", "webworker"],
+    "baseUrl": "./src",
+    "paths": {
+      "~/*": ["./*"],
+      "assets/*": ["./assets/*"]
+    }
+  },
+  "include": ["./**/*"]
+}

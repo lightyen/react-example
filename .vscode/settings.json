@@ -1,0 +1,35 @@
+{
+  "editor.formatOnSave": true,
+  "editor.autoClosingQuotes": "always",
+  "editor.autoClosingBrackets": "always",
+  "emmet.excludeLanguages": ["javascriptreact", "typescriptreact"],
+  "formatFiles.excludePattern": "node_modules,build,.gitignore,.editorconfig,.browserslistrc,yarn.lock",
+  "search.exclude": {
+    "**/build": true,
+    "**/node_modules": true
+  },
+  "files.exclude": {
+    "**/.cache": true,
+    "yarn.lock": true
+  },
+  "files.watcherExclude": {
+    "**/.cache": true,
+    "**/build": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "npm.autoDetect": "off",
+  "typescript.tsc.autoDetect": "off",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "javascript.suggestionActions.enabled": false,
+  "i18n-ally.localesPaths": ["src/store/i18n/locales"],
+  "i18n-ally.sourceLanguage": "en-US",
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true
+  },
+  "i18n-ally.keystyle": "nested"
+}

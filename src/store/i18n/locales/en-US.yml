@@ -1,0 +1,34 @@
+language: Language
+home: home
+button: button
+date_range_picker: date range picker
+card: card
+form: Form
+modal: modal
+themes: themes
+themes.light: light
+themes.dark: dark
+version: version
+hello: Hello World!
+test: "{name} is awesome!"
+input_placeholder: keyword...
+title: title
+data_empty: empty
+add_filter: filter
+select_placeholder: select...
+select_no_options: no options
+pagination_total: "{from} - {to} of {total}"
+clear: clear
+ok: ok
+apply: apply
+submit: submit
+nav_components: Components
+nav_table: Table
+nav_virtual_list: Virtual List
+nav_transition: Transition
+nav_chart: Chart
+nav_web_component: Web Component
+nav_editor: Editor
+nav_carousel: Carousel
+nav_color_picker: Color Picker
+invalid_required: Value is required
