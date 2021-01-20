@@ -4,8 +4,8 @@ import tw, { styled } from "twin.macro"
 const PageDetectScrollbar = styled.div<{ hasScrollbar: boolean }>`
 	${tw`m-3 p-3`}
 	${({ hasScrollbar }) => hasScrollbar && tw`mr-1`}
-	background-color: rgb(var(--theme-surface));
-	color: rgb(var(--theme-text-surface));
+	background-color: ${({ theme }) => theme.surface};
+	color: ${({ theme }) => theme.text.surface};
 `
 
 const Page = ({ children }: { children: React.ReactNode }) => {

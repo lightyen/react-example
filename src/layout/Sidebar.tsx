@@ -10,24 +10,25 @@ import { faDiceD6 } from "@fortawesome/free-solid-svg-icons/faDiceD6"
 import { faBox } from "@fortawesome/free-solid-svg-icons/faBox"
 import { faCode } from "@fortawesome/free-solid-svg-icons/faCode"
 import { useRipple } from "~/components/Button/hooks"
+
 import tw, { css, styled } from "twin.macro"
 
 const StyledNavLink = styled(NavLink)`
 	transition-property: transform, background-color;
 	transition-timing-function: ease;
 	transition-duration: 150ms;
-	color: rgb(var(--theme-text-primary));
+	color: ${({ theme }) => theme.text.primary};
 	${tw`relative overflow-hidden py-2 px-4 h-12 flex items-center font-medium whitespace-nowrap select-none outline-none`}
 	:hover {
-		background: rgb(var(--theme-hover-primary));
+		background: ${({ theme }) => theme.hover.primary};
 		${tw`underline`}
 	}
 	&.active {
 		transform: translateX(10px);
-		background: rgb(var(--theme-hover-primary));
+		background: ${({ theme }) => theme.hover.primary};
 	}
 	:active {
-		background: rgb(var(--theme-primaryvariant));
+		background: ${({ theme }) => theme.primaryVariant};
 	}
 `
 
@@ -46,10 +47,10 @@ export default function Sidebar({ top, width }: Props) {
 	return (
 		<nav
 			css={[
-				tw`fixed overflow-x-hidden transition-all ease-in-out duration-200`,
-				css`
-					background: rgb(var(--theme-primary));
-					color: rgb(var(--theme-text-primary));
+				tw`fixed overflow-x-hidden transition-all ease-in-out! duration-200!`,
+				theme => css`
+					background: ${theme.primary};
+					color: ${theme.text.primary};
 				`,
 				{
 					height: `calc(100vh - ${top}px)`,

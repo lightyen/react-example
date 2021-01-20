@@ -5,32 +5,30 @@ export const FormGroup = tw.div`md:flex mb-6`
 export const Label = ({ children }: { children?: React.ReactNode }) => {
 	return (
 		<div tw="md:w-1/3">
-			<label tw="mb-3 md:mb-0 block font-bold md:text-left pr-4">{children}</label>
+			<label tw="mb-3 block font-bold pr-4 md:(mb-0 text-left)">{children}</label>
 		</div>
 	)
 }
 
 export const Field = tw.div`md:w-2/3`
 
-import type { Theme } from "~/store/theme/themes"
-
-export const InputText = styled.input<{ invalid?: boolean; theme?: Theme }>`
+export const InputText = styled.input<{ invalid?: boolean }>`
 	${tw`w-full rounded shadow appearance-none py-2 px-4 leading-tight transition duration-200! focus:outline-none`}
-	background: rgb(var(--theme-background));
+	background: ${({ theme }) => `${theme.background}`};
 	${({ invalid }) => invalid && tw`border border-red-500`}
 	:disabled {
 		${tw`bg-gray-200 cursor-not-allowed`}
 	}
 	:focus {
 		${tw`ring`}
-		${props => props.theme.name === "dark" && tw`bg-gray-800`}
-		${props => props.theme.name === "light" && tw`bg-white`}
+		${({ theme }) => theme.name === "dark" && tw`bg-gray-800`}
+		${({ theme }) => theme.name === "light" && tw`bg-white`}
 		${({ invalid }) => invalid && `box-shadow: 0 0 0 2px rgba(245, 101, 101, 0.5);`}
 	}
 `
 
 export const InputSelect = styled.select`
-	${tw`block w-full shadow appearance-none py-2 pl-3 pr-10 leading-tight bg-gray-100 text-gray-900 border border-gray-500 focus:bg-white focus:outline-none focus:ring`}
+	${tw`block w-full shadow appearance-none py-2 pl-3 pr-10 leading-tight bg-gray-100 text-gray-900 border border-gray-500 focus:(bg-white outline-none ring)`}
 	:disabled {
 		${tw`bg-gray-200 cursor-not-allowed`}
 	}

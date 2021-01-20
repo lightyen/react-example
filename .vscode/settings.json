@@ -2,6 +2,7 @@
   "editor.formatOnSave": true,
   "editor.autoClosingQuotes": "always",
   "editor.autoClosingBrackets": "always",
+  "tailwindcss.links": false,
   "emmet.excludeLanguages": ["javascriptreact", "typescriptreact"],
   "formatFiles.excludePattern": "node_modules,build,.gitignore,.editorconfig,.browserslistrc,yarn.lock",
   "search.exclude": {

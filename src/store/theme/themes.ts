@@ -1,61 +1,59 @@
 import chroma from "chroma-js"
-import tailwind from "~/tailwind.config"
-
-const colors = tailwind.theme.colors
+import { theme } from "twin.macro"
 
 export const themes = {
 	light: {
 		name: "light",
-		primary: colors.blue[300],
-		primaryVariant: colors.blue[400],
-		secondary: colors.green[300],
-		secondaryVariant: colors.green[400],
-		background: colors.gray[200],
-		surface: colors.gray[100],
-		error: colors.red[500],
-		success: colors.green[500],
+		primary: theme`colors.blue.500`,
+		primaryVariant: theme`colors.blue.400`,
+		secondary: theme`colors.green.300`,
+		secondaryVariant: theme`colors.green.400`,
+		background: theme`colors.gray.200`,
+		surface: theme`colors.gray.100`,
+		error: theme`colors.red.500`,
+		success: theme`colors.green.500`,
 		text: {
-			primary: colors.gray[800],
-			secondary: colors.gray[800],
-			background: colors.gray[900],
-			surface: colors.gray[900],
-			error: colors.gray[900],
-			success: colors.gray[900],
+			primary: theme`colors.gray.800`,
+			secondary: theme`colors.gray.800`,
+			background: theme`colors.gray.900`,
+			surface: theme`colors.gray.900`,
+			error: theme`colors.gray.900`,
+			success: theme`colors.gray.900`,
 		},
 		hover: {
-			primary: colors.blue[500],
-			secondary: colors.green[400],
-			background: colors.gray[500],
-			surface: colors.gray[500],
-			error: colors.red[200],
-			success: colors.green[200],
+			primary: theme`colors.blue.300`,
+			secondary: theme`colors.green.400`,
+			background: theme`colors.gray.500`,
+			surface: theme`colors.gray.500`,
+			error: theme`colors.red.200`,
+			success: theme`colors.green.200`,
 		},
 	},
 	dark: {
 		name: "dark",
-		primary: colors.blue[900],
-		primaryVariant: colors.blue[800],
-		secondary: colors.green[900],
-		secondaryVariant: colors.green[800],
-		background: colors.gray[900],
+		primary: theme`colors.blue.900`,
+		primaryVariant: theme`colors.blue.800`,
+		secondary: theme`colors.green.900`,
+		secondaryVariant: theme`colors.green.800`,
+		background: theme`colors.gray.900`,
 		surface: "#232933",
-		error: colors.red[500],
-		success: colors.green[500],
+		error: theme`colors.red.500`,
+		success: theme`colors.green.500`,
 		text: {
-			primary: colors.gray[100],
-			secondary: colors.gray[100],
-			background: colors.gray[100],
-			surface: colors.gray[100],
-			error: colors.gray[100],
-			success: colors.gray[100],
+			primary: theme`colors.gray.100`,
+			secondary: theme`colors.gray.100`,
+			background: theme`colors.gray.100`,
+			surface: theme`colors.gray.100`,
+			error: theme`colors.gray.100`,
+			success: theme`colors.gray.100`,
 		},
 		hover: {
-			primary: colors.blue[700],
-			secondary: colors.green[700],
-			background: colors.gray[500],
-			surface: colors.gray[500],
-			error: colors.red[800],
-			success: colors.green[800],
+			primary: theme`colors.blue.700`,
+			secondary: theme`colors.green.700`,
+			background: theme`colors.gray.500`,
+			surface: theme`colors.gray.500`,
+			error: theme`colors.red.800`,
+			success: theme`colors.green.800`,
 		},
 	},
 }
@@ -81,6 +79,10 @@ function getTheme(): ThemeMode {
 		return "dark"
 	}
 	return "light"
+}
+
+export function toRgb(color: string) {
+	return chroma(color).rgb().join(",")
 }
 
 function setTheme(obj: Theme, prefix = "--theme") {

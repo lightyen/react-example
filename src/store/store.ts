@@ -21,21 +21,21 @@ export function makeStore() {
 		devTools: process.env.NODE_ENV === "development" ? { name: "react is awesome" } : false,
 	})
 
-	let sagaTask = sagaMiddleware.run(rootSaga)
+	sagaMiddleware.run(rootSaga)
 
-	if (module.hot) {
-		module.hot.accept("~/store/reducer", () => {
-			console.log("@@HMR reducer")
-			store.replaceReducer(reducer)
-		})
-		module.hot.accept("~/store/saga", () => {
-			console.log("@@HMR saga")
-			sagaTask.cancel()
-			sagaTask.toPromise().then(() => {
-				sagaTask = sagaMiddleware.run(rootSaga)
-			})
-		})
-	}
+	// if (module.hot) {
+	// 	module.hot.accept("~/store/reducer", () => {
+	// 		console.log("@@HMR reducer")
+	// 		store.replaceReducer(reducer)
+	// 	})
+	// 	module.hot.accept("~/store/saga", () => {
+	// 		console.log("@@HMR saga")
+	// 		sagaTask.cancel()
+	// 		sagaTask.toPromise().then(() => {
+	// 			sagaTask = sagaMiddleware.run(rootSaga)
+	// 		})
+	// 	})
+	// }
 
 	// const epic$ = new BehaviorSubject(rootEpic)
 	// epicMiddleware.run((action$, state$, dep$) => epic$.pipe(switchMap(epic => epic(action$, state$, dep$))))

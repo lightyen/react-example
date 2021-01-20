@@ -21,9 +21,9 @@ export default function Header({ height }: Props) {
 		<header
 			css={[
 				tw`flex items-center`,
-				css`
-					background: rgb(var(--theme-secondary));
-					color: rgb(var(--theme-text-secondary));
+				theme => css`
+					background: ${theme.secondary};
+					color: ${theme.text.secondary};
 				`,
 				{ height },
 			]}

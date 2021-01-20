@@ -148,8 +148,8 @@ const ModalContent = ({
 				variants={modal}
 				css={[
 					tw`rounded`,
-					css`
-						background-color: rgb(var(--theme-surface));
+					theme => css`
+						background-color: ${theme.surface};
 						filter: drop-shadow(2px 2px 8px rgba(var(--theme-modal-shadow)));
 					`,
 				]}

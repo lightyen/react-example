@@ -1,4 +1,5 @@
 import tw, { styled } from "twin.macro"
+import { toRgb } from "~/store/theme/themes"
 
 interface Props {
 	invalid?: boolean
@@ -13,20 +14,30 @@ export default styled.input<Props>`
 	& ~ [aria-label=".valid-message"] {
 		${tw`mt-1 text-green-500 text-xs italic`}
 	}
-	background: rgb(var(--theme-background));
 	:focus {
 		${tw`outline-none ring`}
 	}
-	${({ invalid }) => invalid && "background: rgba(var(--theme-error), 0.3);"}
-	:focus {
-		${({ invalid }) => invalid && "background: rgba(var(--theme-error), 0.8);"}
-		${({ invalid }) => invalid && "color: rgba(var(--theme-text-error));"}
-		${({ invalid }) => invalid && `box-shadow: 0 0 0 3px rgba(225, 66, 66, 0.507);`}
-	}
+	background: ${({ theme }) => theme.background};
 
-	${({ valid }) => valid && "background: rgba(var(--theme-success), 0.3);"}
-	:focus {
-		${({ valid }) => valid && "color: rgba(var(--theme-text-success));"}
-		${({ valid }) => valid && `box-shadow: 0 0 0 3px rgba(79, 225, 66, 0.507);`}
-	}
+	${({ invalid, valid, theme }) => {
+		if (invalid) {
+			return `
+			background: rgba(${toRgb(theme.error)}, 0.3);
+			focus: {
+				background: rgba(${toRgb(theme.error)}, 0.8);
+				color: ${theme.text.error};
+				box-shadow: 0 0 0 3px rgba(225, 66, 66, 0.507);
+			}`
+		} else if (valid) {
+			return `
+			background: rgba(${toRgb(theme.success)}, 0.3);
+			focus: {
+				background: rgba(${toRgb(theme.success)}, 0.8);
+				color: ${theme.text.success};
+				box-shadow: 0 0 0 3px rgba(79, 225, 66, 0.507);
+			}`
+		} else {
+			return ""
+		}
+	}}
 `
