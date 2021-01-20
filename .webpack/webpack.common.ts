@@ -1,4 +1,5 @@
 import path from "path"
+import glob from "glob"
 import type { Configuration } from "webpack"
 
 import { EnvironmentPlugin } from "webpack"
@@ -16,6 +17,10 @@ const publicPath = "/"
 
 const join = (...args: string[]) => path.join(...args).replace(path.sep, "/")
 
+const entry: Configuration["entry"] = glob
+	.sync("index.*", { cwd: path.resolve(workspaceFolder, "src") })
+	.map(i => path.resolve(workspaceFolder, "src", i))
+
 const styleLoader = {
 	loader: isDev ? "style-loader" : MiniCssExtractPlugin.loader,
 	options: {
@@ -25,9 +30,7 @@ const styleLoader = {
 
 const config: Configuration = {
 	target: "web",
-	entry: {
-		index: path.resolve(workspaceFolder, "src", "index.tsx"),
-	},
+	entry,
 	output: {
 		path: path.resolve(workspaceFolder, "build"),
 		filename: join(outputJS, "[name].js?[fullhash]"),
@@ -46,7 +49,7 @@ const config: Configuration = {
 	module: {
 		rules: [
 			{
-				test: /\.tsx$/,
+				test: /\.tsx?$/,
 				exclude: /node_modules|__tests?__|\.test\.tsx?$|\.worker\.ts$/,
 				use: [
 					"babel-loader",
@@ -57,7 +60,7 @@ const config: Configuration = {
 				],
 			},
 			{
-				test: /\.jsx$/,
+				test: /\.jsx?$/,
 				exclude: /node_modules|__tests?__|\.test\.jsx?$|\.worker\.js$/,
 				use: ["babel-loader"],
 			},
@@ -92,7 +95,7 @@ const config: Configuration = {
 				use: [styleLoader, "css-loader"],
 			},
 			{
-				test: /\.(png|jpe?g|gif|ico)(\?.*)?$/,
+				test: /\.(png|jpe?g|gif|ico)(\?.*)?$/i,
 				use: [
 					{
 						loader: "url-loader",
@@ -112,7 +115,7 @@ const config: Configuration = {
 				use: "js-yaml-loader",
 			},
 			{
-				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+				test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
 				use: [
 					{
 						loader: "file-loader",
