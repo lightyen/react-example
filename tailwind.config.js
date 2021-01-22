@@ -1,12 +1,11 @@
 module.exports = {
 	darkMode: "media",
 	theme: {
-		minHeight: {
-			8: "2rem",
-			full: "100%",
-			screen: "100vh",
+		extend: {
+			minHeight: {
+				8: "2rem",
+			},
 		},
-		extend: {},
 	},
 	variants: {
 		extend: {

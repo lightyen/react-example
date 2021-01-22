@@ -173,7 +173,7 @@ export default function ComponentsPage() {
 				<CustomDateRangePicker
 					tw="font-normal capitalize py-2 px-3 rounded"
 					css={css`
-						${tw`bg-blue-500 text-white transition ease-in-out! duration-200!`}
+						${tw`bg-blue-500 text-white  transition ease-in-out! duration-200!`}
 						:focus {
 							box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 							${tw`outline-none`}

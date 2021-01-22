@@ -2,7 +2,6 @@
   "editor.formatOnSave": true,
   "editor.autoClosingQuotes": "always",
   "editor.autoClosingBrackets": "always",
-  "tailwindcss.links": false,
   "emmet.excludeLanguages": ["javascriptreact", "typescriptreact"],
   "formatFiles.excludePattern": "node_modules,build,.gitignore,.editorconfig,.browserslistrc,yarn.lock",
   "search.exclude": {
@@ -17,6 +16,14 @@
     "**/.cache": true,
     "**/build": true
   },
+  "tailwindcss.colorDecorators": true,
+  "tailwindcss.validate": true,
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true
+  },
+  "[typescriptreact]": {
+    "editor.suggest.showSnippets": false
+  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "npm.autoDetect": "off",
   "typescript.tsc.autoDetect": "off",
@@ -29,8 +36,5 @@
   "javascript.suggestionActions.enabled": false,
   "i18n-ally.localesPaths": ["src/store/i18n/locales"],
   "i18n-ally.sourceLanguage": "en-US",
-  "editor.semanticTokenColorCustomizations": {
-    "enabled": true
-  },
   "i18n-ally.keystyle": "nested"
 }
