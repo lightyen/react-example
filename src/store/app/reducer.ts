@@ -1,7 +1,7 @@
 import { BreakingPoint } from "./model"
 import { createReducer } from "@reduxjs/toolkit"
 import { setBreakingPoint, setSidebarVisible } from "./action"
-import tailwind from "~/tailwind.config"
+import { theme } from "twin.macro"
 
 export interface AppStore {
 	breakpoint: BreakingPoint
@@ -10,13 +10,13 @@ export interface AppStore {
 }
 
 function getBreakPoint(): BreakingPoint {
-	if (window.matchMedia(`(min-width: ${tailwind.theme.screens.xl})`).matches) {
+	if (window.matchMedia(`(min-width: ${theme`screens.xl`})`).matches) {
 		return "xl"
-	} else if (window.matchMedia(`(min-width: ${tailwind.theme.screens.lg})`).matches) {
+	} else if (window.matchMedia(`(min-width: ${theme`screens.lg`})`).matches) {
 		return "lg"
-	} else if (window.matchMedia(`(min-width: ${tailwind.theme.screens.md})`).matches) {
+	} else if (window.matchMedia(`(min-width: ${theme`screens.md`})`).matches) {
 		return "md"
-	} else if (window.matchMedia(`(min-width: ${tailwind.theme.screens.sm})`).matches) {
+	} else if (window.matchMedia(`(min-width: ${theme`screens.sm`})`).matches) {
 		return "sm"
 	}
 	return "xs"
@@ -24,7 +24,7 @@ function getBreakPoint(): BreakingPoint {
 
 const init: AppStore = {
 	breakpoint: getBreakPoint(),
-	collapsed: window.matchMedia(`(max-width: ${tailwind.theme.screens.lg})`).matches,
+	collapsed: window.matchMedia(`(max-width: ${theme`screens.lg`})`).matches,
 	sidebarVisible: false,
 }
 

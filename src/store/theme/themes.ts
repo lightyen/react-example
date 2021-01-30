@@ -4,11 +4,11 @@ import { theme } from "twin.macro"
 export const themes = {
 	light: {
 		name: "light",
-		primary: theme`colors.blue.500`,
-		primaryVariant: theme`colors.blue.400`,
-		secondary: theme`colors.green.300`,
-		secondaryVariant: theme`colors.green.400`,
-		background: theme`colors.gray.200`,
+		primary: theme`colors.gray.200`,
+		primaryVariant: theme`colors.blue.200`,
+		secondary: theme`colors.indigo.300`,
+		secondaryVariant: theme`colors.indigo.400`,
+		background: "#fcfcfc",
 		surface: theme`colors.gray.100`,
 		error: theme`colors.red.500`,
 		success: theme`colors.green.500`,
@@ -31,7 +31,7 @@ export const themes = {
 	},
 	dark: {
 		name: "dark",
-		primary: theme`colors.blue.900`,
+		primary: theme`colors.gray.800`,
 		primaryVariant: theme`colors.blue.800`,
 		secondary: theme`colors.green.900`,
 		secondaryVariant: theme`colors.green.800`,
@@ -85,7 +85,8 @@ export function toRgb(color: string) {
 	return chroma(color).rgb().join(",")
 }
 
-function setTheme(obj: Theme, prefix = "--theme") {
+/** @deprecated */
+export function setTheme(obj: Theme, prefix = "--theme") {
 	const root = document.documentElement
 	for (const key in obj) {
 		if (typeof obj[key] === "string") {
@@ -101,7 +102,7 @@ function setTheme(obj: Theme, prefix = "--theme") {
 
 export function prepareTheme(name = "", cached = false) {
 	const theme = themes[name || getTheme()]
-	setTheme(theme)
+	// setTheme(theme)
 	document.body.style.backgroundColor = theme.background
 	document.body.style.color = theme.text.background
 	document.body.style.borderColor = theme.background

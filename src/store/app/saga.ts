@@ -2,7 +2,7 @@ import { eventChannel } from "redux-saga"
 import { take, fork, put } from "redux-saga/effects"
 import { BreakingPoint } from "./model"
 import { setBreakingPoint } from "./action"
-import tailwind from "~/tailwind.config"
+import { theme } from "twin.macro"
 
 const breakingPointChannel = (query: string, match: BreakingPoint, noMatch: BreakingPoint) =>
 	eventChannel<BreakingPoint>(emit => {
@@ -13,7 +13,7 @@ const breakingPointChannel = (query: string, match: BreakingPoint, noMatch: Brea
 	})
 
 function* responsive_sm() {
-	const chan = breakingPointChannel(`(min-width: ${tailwind.theme.screens.sm})`, "sm", "xs")
+	const chan = breakingPointChannel(`(min-width: ${theme`screens.sm`})`, "sm", "xs")
 	while (true) {
 		const breakpoint: BreakingPoint = yield take(chan)
 		yield put(setBreakingPoint({ breakpoint }))
@@ -21,7 +21,7 @@ function* responsive_sm() {
 }
 
 function* responsive_md() {
-	const chan = breakingPointChannel(`(min-width: ${tailwind.theme.screens.md})`, "md", "sm")
+	const chan = breakingPointChannel(`(min-width: ${theme`screens.md`})`, "md", "sm")
 	while (true) {
 		const breakpoint: BreakingPoint = yield take(chan)
 		yield put(setBreakingPoint({ breakpoint }))
@@ -29,7 +29,7 @@ function* responsive_md() {
 }
 
 function* responsive_lg() {
-	const chan = breakingPointChannel(`(min-width: ${tailwind.theme.screens.lg})`, "lg", "md")
+	const chan = breakingPointChannel(`(min-width: ${theme`screens.lg`})`, "lg", "md")
 	while (true) {
 		const breakpoint: BreakingPoint = yield take(chan)
 		yield put(setBreakingPoint({ breakpoint }))
@@ -37,7 +37,7 @@ function* responsive_lg() {
 }
 
 function* responsive_xl() {
-	const chan = breakingPointChannel(`(min-width: ${tailwind.theme.screens.xl})`, "xl", "lg")
+	const chan = breakingPointChannel(`(min-width: ${theme`screens.xl`})`, "xl", "lg")
 	while (true) {
 		const breakpoint: BreakingPoint = yield take(chan)
 		yield put(setBreakingPoint({ breakpoint }))

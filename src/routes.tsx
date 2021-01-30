@@ -1,12 +1,14 @@
 import { lazy } from "react"
 import { FormattedMessage } from "react-intl"
-import { RouteProps } from "react-router-dom"
+import { RouteProps } from "react-router"
 
-interface RouteItem extends RouteProps {
-	name: React.ReactNode
+export type RouteName = React.ReactNode
+
+interface RouteConfig extends RouteProps {
+	name: RouteName
 }
 
-export const routes: RouteItem[] = [
+export const routes: RouteConfig[] = [
 	{
 		path: "/",
 		exact: true,
@@ -51,11 +53,28 @@ export const routes: RouteItem[] = [
 	},
 ]
 
-export function getRouteName(url: string): React.ReactNode {
-	const r = routes.find(i => i.path === url)
-	if (r) {
-		return r.name
+export function getRouteName(url: string): RouteName {
+	const match = routes.find(route => {
+		if (route.strict) {
+			return route.path === url
+		}
+
+		if (route.path instanceof Array) {
+			return route.path.some(p => url.startsWith(p))
+		}
+
+		return url.startsWith(route.path)
+	})
+
+	if (match) {
+		return match.name
 	}
-	const u = new URL(url)
-	return u.pathname
+
+	return new URL(url).pathname
+}
+
+export function getBreadcrumbs(url: string): RouteName[] {
+	const names: React.ReactNode[] = []
+
+	return names
 }

@@ -7,21 +7,24 @@ export function useRipple<T extends HTMLElement>() {
 
 		function ripple(el: HTMLElement, e: MouseEvent) {
 			const c = document.createElement("div")
-			c.addEventListener(
-				"transitionend",
-				() => {
-					try {
-						el.removeChild(c)
-					} catch {}
-				},
-				false,
-			)
+			// c.addEventListener(
+			// 	"transitionend",
+			// 	() => {
+			// 		try {
+			// 			el.removeChild(c)
+			// 		} catch {}
+			// 	},
+			// 	false,
+			// )
+			if (el.lastElementChild?.classList.contains("ripple-circle")) {
+				el.removeChild(el.lastElementChild)
+			}
 			c.classList.add("ripple-circle")
 			el.appendChild(c)
 
 			const rect = el.getBoundingClientRect()
 			const d = Math.sqrt(Math.pow(rect.width, 2) + Math.pow(rect.height, 2)) * 2
-			c.style.cssText = `--scale: 0.05; --opacity: 1;`
+			c.style.cssText = `--scale: 0.25; --opacity: 0.4;`
 			c.clientTop
 			// NOTE: https://gist.github.com/paulirish/5d52fb081b3570c81e3a
 			c.style.cssText = `--t: 0.37;
