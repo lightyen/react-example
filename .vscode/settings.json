@@ -16,11 +16,8 @@
     "**/.cache": true,
     "**/build": true
   },
-  "tailwindcss.colorDecorators": true,
-  "tailwindcss.validate": true,
-  "editor.semanticTokenColorCustomizations": {
-    "enabled": true
-  },
+  "tailwindcss.links": false,
+  "tailwindcss.colorDecorators": false,
   "[typescriptreact]": {
     "editor.suggest.showSnippets": false
   },

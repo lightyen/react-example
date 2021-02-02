@@ -10,6 +10,7 @@ export default function Home() {
 		<Page>
 			<ReactLogo tw="w-32" />
 			<FormattedMessage id="test" values={{ name: "React" }} />
+			<div tw="transition">Test</div>
 		</Page>
 	)
 }

@@ -10,63 +10,35 @@ const Button = styled.button<Props>(({ variant = "gray" }) => {
 		tw`py-3 px-6 rounded text-white leading-none relative overflow-hidden transition ease-in-out! duration-200!`,
 		variant === "gray" &&
 			css`
-				${tw`bg-gray-700 text-white`}
-				:focus {
-					box-shadow: 0 0 0 3px rgba(160, 174, 192, 0.5);
-					${tw`outline-none`}
-				}
-				:hover {
-					box-shadow: 0 0 0 3px rgba(160, 174, 192, 0.5);
-					${tw`bg-gray-600`}
-				}
+				${tw`bg-gray-700 text-white
+				hocus:(bg-gray-600 boxShadow[0 0 0 3px rgba(160, 174, 192, 0.5)])
+				focus:outline-none`}
 			`,
 		variant === "blue" &&
 			css`
-				${tw`bg-blue-500 text-white`}
-				:focus {
-					box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-					${tw`outline-none`}
-				}
-				:hover {
-					box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-					${tw`bg-blue-600`}
-				}
+				${tw`bg-blue-500 text-white
+				hocus:(bg-blue-400 boxShadow[0 0 0 3px rgba(66, 153, 225, 0.5)])
+				focus:outline-none`}
 			`,
 		variant === "green" &&
 			css`
-				${tw`bg-green-500 text-white`}
-				:focus {
-					box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.5);
-					${tw`outline-none`}
-				}
-				:hover {
-					box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.5);
-					${tw`bg-green-600`}
-				}
+				${tw`bg-green-500 text-white
+				hocus:(bg-green-400 boxShadow[0 0 0 3px rgba(72, 187, 120, 0.5)])
+				focus:outline-none`}
 			`,
 		variant === "yellow" &&
 			css`
-				${tw`bg-yellow-500 text-white`}
-				:focus {
-					box-shadow: 0 0 0 3px rgba(237, 137, 54, 0.5);
-					${tw`outline-none`}
-				}
-				:hover {
-					box-shadow: 0 0 0 3px rgba(237, 137, 54, 0.5);
-					${tw`bg-yellow-600`}
-				}
+				${tw`bg-yellow-500 text-white
+				hocus:(bg-yellow-400 boxShadow[0 0 0 3px rgba(237, 137, 54, 0.5)])
+				focus:outline-none
+				`}
 			`,
 		variant === "red" &&
 			css`
-				${tw`bg-red-500 text-white`}
-				:focus {
-					box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.5);
-					${tw`outline-none`}
-				}
-				:hover {
-					box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.5);
-					${tw`bg-red-600`}
-				}
+				${tw`bg-red-500 text-white
+				hocus:(bg-red-400 boxShadow[0 0 0 3px rgba(245, 101, 101, 0.5)])
+				focus:outline-none
+				`}
 			`,
 	]
 })

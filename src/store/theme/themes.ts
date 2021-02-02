@@ -85,7 +85,7 @@ export function toRgb(color: string) {
 	return chroma(color).rgb().join(",")
 }
 
-function setTheme(obj: Theme, prefix = "--theme") {
+export function setTheme(obj: Theme, prefix = "--theme") {
 	const root = document.documentElement
 	for (const key in obj) {
 		if (typeof obj[key] === "string") {
@@ -101,7 +101,7 @@ function setTheme(obj: Theme, prefix = "--theme") {
 
 export function prepareTheme(name = "", cached = false) {
 	const theme = themes[name || getTheme()]
-	setTheme(theme)
+	// setTheme(theme)
 	document.body.style.backgroundColor = theme.background
 	document.body.style.color = theme.text.background
 	document.body.style.borderColor = theme.background
