@@ -28,8 +28,8 @@ const Button = styled.button<Props>(({ variant = "gray" }) => {
 			`,
 		variant === "yellow" &&
 			css`
-				${tw`bg-yellow-500 text-white
-				hocus:(bg-yellow-400 boxShadow[0 0 0 3px rgba(237, 137, 54, 0.5)])
+				${tw`
+				bg-yellow-500 text-white hocus:(bg-yellow-400 boxShadow[0 0 0 3px rgba(237, 137, 54, 0.5)])
 				focus:outline-none
 				`}
 			`,

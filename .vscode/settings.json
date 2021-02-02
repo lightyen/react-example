@@ -4,6 +4,10 @@
   "editor.autoClosingBrackets": "always",
   "emmet.excludeLanguages": ["javascriptreact", "typescriptreact"],
   "formatFiles.excludePattern": "node_modules,build,.gitignore,.editorconfig,.browserslistrc,yarn.lock",
+  "tailwindcss.colorDecorators": false,
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true
+  },
   "search.exclude": {
     "**/build": true,
     "**/node_modules": true
@@ -16,8 +20,6 @@
     "**/.cache": true,
     "**/build": true
   },
-  "tailwindcss.links": false,
-  "tailwindcss.colorDecorators": false,
   "[typescriptreact]": {
     "editor.suggest.showSnippets": false
   },

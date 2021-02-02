@@ -35,7 +35,7 @@ const globalStyle = css`
 	#modal-root {
 		position: absolute;
 		bottom: 100%;
-		${tw`left-0 right-0 top-0`}
+		${tw`left-0 right-0 top-0 `}
 	}
 
 	.ripple-circle {
