@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef, useCallback } from "react"
-import Select from "react-select"
-import { motion } from "framer-motion"
-import { FormattedMessage, useIntl } from "react-intl"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter } from "@fortawesome/free-solid-svg-icons/faFilter"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { motion } from "framer-motion"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { FormattedMessage, useIntl } from "react-intl"
+import Select from "react-select"
 import tw, { styled } from "twin.macro"
 
 const AddFilerButton = styled.button`
@@ -53,6 +53,7 @@ export const AddFilter = ({ tabIndex, options, onChange }: Props) => {
 				<motion.div
 					initial={{ scaleY: 0.7, opacity: 0.5 }}
 					animate={{ scaleY: 1, opacity: 1, transition: { duration: 0.15 } }}
+					tw="text-gray-800"
 					onAnimationComplete={() => window.addEventListener("mousedown", exit)}
 				>
 					<div ref={ref} css={{ width: 180 }}>
