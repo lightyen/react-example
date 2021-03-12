@@ -1,14 +1,12 @@
-import type { Store } from "redux"
-import { Provider } from "react-redux"
-import AppLayout from "~/layout/AppLayout"
 import { Global, ThemeProvider } from "@emotion/react"
-import tw, { css, GlobalStyles } from "twin.macro"
-
-import { useSelector } from "~/store/hooks"
-import { IntlProvider } from "react-intl"
-import { getLocaleMessages } from "~/store/i18n/languages"
-
 import FiraCodeFont from "assets/fonts/FiraCode-Regular.woff2"
+import { IntlProvider } from "react-intl"
+import { Provider as ReactReduxProvider } from "react-redux"
+import tw, { css, GlobalStyles } from "twin.macro"
+import AppLayout from "~/layout/AppLayout"
+import { AppStoreContext, useSelector } from "~/store/hooks"
+import { getLocaleMessages } from "~/store/i18n/languages"
+import { makeStore } from "~/store/store"
 
 const globalStyle = css`
 	@font-face {
@@ -57,12 +55,20 @@ const globalStyle = css`
 	}
 `
 
-const StyledThemeProvider = ({ children }: { children: React.ReactNode }) => {
+function StoreProvider({ children }: { children?: React.ReactNode }) {
+	return (
+		<ReactReduxProvider context={AppStoreContext} store={makeStore()}>
+			{children}
+		</ReactReduxProvider>
+	)
+}
+
+function StyledThemeProvider({ children }: { children?: React.ReactNode }) {
 	const theme = useSelector(state => state.theme)
 	return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }
 
-const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
+function LanguageProvider({ children }: { children?: React.ReactNode }) {
 	const locale = useSelector(state => state.i18n.locale)
 	return (
 		<IntlProvider locale={locale} messages={getLocaleMessages(locale)}>
@@ -71,9 +77,9 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
 	)
 }
 
-export default function App({ store }: { store: Store }) {
+export default function App() {
 	return (
-		<Provider store={store}>
+		<StoreProvider>
 			<GlobalStyles />
 			<Global styles={globalStyle} />
 			<StyledThemeProvider>
@@ -81,6 +87,6 @@ export default function App({ store }: { store: Store }) {
 					<AppLayout />
 				</LanguageProvider>
 			</StyledThemeProvider>
-		</Provider>
+		</StoreProvider>
 	)
 }

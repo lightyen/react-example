@@ -1,14 +1,16 @@
-import { useMemo } from "react"
 import { bindActionCreators } from "@reduxjs/toolkit"
-import { useSelector as useReduxSelector, useDispatch, TypedUseSelectorHook } from "react-redux"
+import { createContext, useMemo } from "react"
+import { createDispatchHook, createSelectorHook, createStoreHook, ReactReduxContextValue } from "react-redux"
+import app from "~/store/app/action"
+import data from "~/store/data/action"
+import i18n from "~/store/i18n/action"
+import theme from "~/store/theme/action"
 import { RootStore } from "./reducer"
 
-import app from "~/store/app/action"
-import theme from "~/store/theme/action"
-import i18n from "~/store/i18n/action"
-import data from "~/store/data/action"
-
-export const useSelector: TypedUseSelectorHook<RootStore> = useReduxSelector
+export const AppStoreContext = createContext<ReactReduxContextValue<RootStore>>(null)
+export const useStore = createStoreHook(AppStoreContext)
+export const useDispatch = createDispatchHook(AppStoreContext)
+export const useSelector = createSelectorHook(AppStoreContext)
 
 export function useAction() {
 	const dispatch = useDispatch()
@@ -21,8 +23,4 @@ export function useAction() {
 		}),
 		[dispatch],
 	)
-}
-
-export function useI18n() {
-	return useSelector(state => state.i18n)
 }

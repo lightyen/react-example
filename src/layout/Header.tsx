@@ -1,13 +1,12 @@
-import { useSelector, useAction, useI18n } from "~/store/hooks"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars"
 import { faHome } from "@fortawesome/free-solid-svg-icons/faHome"
-import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { motion } from "framer-motion"
-
+import { Link } from "react-router-dom"
+import tw, { css } from "twin.macro"
 import DarkModeToggle from "~/components/DarkModeToggle"
 import LanguageSelect from "~/components/LanguageSelect"
-import tw, { css } from "twin.macro"
+import { useAction, useSelector } from "~/store/hooks"
 
 interface Props {
 	height: number
@@ -16,7 +15,7 @@ interface Props {
 export default function Header({ height }: Props) {
 	const { setSidebarVisible } = useAction().app
 	const visible = useSelector(state => state.app.sidebarVisible)
-	const { enable } = useI18n()
+	const enable = useSelector(state => state.i18n.enable)
 	return (
 		<header
 			css={[
