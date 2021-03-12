@@ -1,7 +1,7 @@
-import { takeEvery, call, put } from "redux-saga/effects"
-import { fetchGithubIssues, fetchGithubIssuesSuccess } from "./action"
-import axios, { AxiosResponse } from "axios"
 import { Action, createAction } from "@reduxjs/toolkit"
+import axios, { AxiosResponse } from "axios"
+import { call, put, takeEvery } from "redux-saga/effects"
+import { fetchGithubIssues, fetchGithubIssuesSuccess } from "./action"
 
 function get(handler: (resp: AxiosResponse) => Action, ...param: Parameters<typeof axios.get>) {
 	return function* (action: Action) {
@@ -15,8 +15,8 @@ function get(handler: (resp: AxiosResponse) => Action, ...param: Parameters<type
 	}
 }
 
-function* takeEveryGet(from: ReturnType<typeof createAction>, ...param: Parameters<typeof get>) {
-	yield takeEvery(from, get(...param))
+function takeEveryGet(from: ReturnType<typeof createAction>, ...param: Parameters<typeof get>) {
+	return takeEvery(from, get(...param))
 }
 
 export default function* saga() {
