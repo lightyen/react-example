@@ -1,18 +1,16 @@
-import { useEffect, useState, useRef } from "react"
-import { useAction } from "~/store/hooks"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { css } from "@emotion/react"
 import { faLanguage } from "@fortawesome/free-solid-svg-icons/faLanguage"
-import { motion, AnimatePresence } from "framer-motion"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { AnimatePresence, motion } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
 import { FormattedMessage } from "react-intl"
+import tw, { styled } from "twin.macro"
+import { useAction, useSelector } from "~/store/hooks"
 import { supports } from "~/store/i18n/languages"
 import { entries } from "~/type-safed"
 
-import { css } from "@emotion/react"
-import tw, { styled } from "twin.macro"
-import { useSelector } from "~/store/hooks"
-
 const Button = styled.button`
-	${tw`transition ease-in-out! duration-200! opacity-75`}
+	${tw`transition ease-in-out duration-200 opacity-75`}
 `
 
 const LanguageSelect = () => {

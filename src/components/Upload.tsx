@@ -1,10 +1,9 @@
+import { faUpload } from "@fortawesome/free-solid-svg-icons/faUpload"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { forwardRef, useRef, useState } from "react"
+import { FormattedMessage } from "react-intl"
 import tw, { styled } from "twin.macro"
 import { v4 } from "uuid"
-import { FormattedMessage } from "react-intl"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUpload } from "@fortawesome/free-solid-svg-icons/faUpload"
 
 const InputFile = styled.input`
 	display: none;
@@ -12,7 +11,7 @@ const InputFile = styled.input`
 
 const Label = styled.label`
 	${tw`inline-flex items-center justify-center w-full px-4 py-2`}
-	${tw`cursor-pointer select-none transition duration-200!`}
+	${tw`cursor-pointer select-none transition duration-200`}
 `
 
 type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">

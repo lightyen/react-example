@@ -2,6 +2,10 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
   },
+  "editor.quickSuggestions": {
+    "other": true,
+    "strings": true
+  },
   "editor.formatOnSave": true,
   "editor.autoClosingQuotes": "always",
   "editor.autoClosingBrackets": "always",

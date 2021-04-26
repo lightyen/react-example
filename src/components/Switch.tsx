@@ -1,6 +1,6 @@
 import { forwardRef, useRef } from "react"
-import { v4 } from "uuid"
 import tw, { styled } from "twin.macro"
+import { v4 } from "uuid"
 
 const Check = styled.input`
 	display: none;
@@ -10,7 +10,7 @@ const Slider = styled.label`
 	width: 3.7rem;
 	height: 1.8rem;
 	border-radius: 9999px;
-	${tw`transition ease-in-out! duration-200! bg-gray-400`}
+	${tw`transition ease-in-out duration-200 bg-gray-400`}
 
 	position: relative;
 	display: flex;
@@ -26,7 +26,7 @@ const Slider = styled.label`
 
 	&::after {
 		content: "";
-		${tw`transition ease-in-out! duration-200!`}
+		${tw`transition ease-in-out duration-200`}
 		width: 1.3rem;
 		height: 1.3rem;
 		top: 0.25rem;

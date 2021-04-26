@@ -1,17 +1,15 @@
-import { useSelector } from "~/store/hooks"
-import { NavLink, NavLinkProps } from "react-router-dom"
-import { FormattedMessage } from "react-intl"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faThLarge } from "@fortawesome/free-solid-svg-icons/faThLarge"
-import { faThList } from "@fortawesome/free-solid-svg-icons/faThList"
-import { faInfinity } from "@fortawesome/free-solid-svg-icons/faInfinity"
-import { faDiceD6 } from "@fortawesome/free-solid-svg-icons/faDiceD6"
 import { faBox } from "@fortawesome/free-solid-svg-icons/faBox"
 import { faCode } from "@fortawesome/free-solid-svg-icons/faCode"
-import { useRipple } from "~/components/Button/hooks"
-
+import { faDiceD6 } from "@fortawesome/free-solid-svg-icons/faDiceD6"
+import { faInfinity } from "@fortawesome/free-solid-svg-icons/faInfinity"
+import { faThLarge } from "@fortawesome/free-solid-svg-icons/faThLarge"
+import { faThList } from "@fortawesome/free-solid-svg-icons/faThList"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FormattedMessage } from "react-intl"
+import { NavLink, NavLinkProps } from "react-router-dom"
 import tw, { css, styled } from "twin.macro"
+import { useRipple } from "~/components/Button/hooks"
+import { useSelector } from "~/store/hooks"
 
 const StyledNavLink = styled(NavLink)`
 	transition-property: transform, background-color;
@@ -47,7 +45,7 @@ export default function Sidebar({ top, width }: Props) {
 	return (
 		<nav
 			css={[
-				tw`fixed overflow-x-hidden transition-all ease-in-out! duration-200!`,
+				tw`fixed overflow-x-hidden transition-all ease-in-out duration-200`,
 				theme => css`
 					background: ${theme.primary};
 					color: ${theme.text.primary};

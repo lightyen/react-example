@@ -13,7 +13,7 @@ export const Label = ({ children }: { children?: React.ReactNode }) => {
 export const Field = tw.div`md:w-2/3`
 
 export const InputText = styled.input<{ invalid?: boolean }>`
-	${tw`w-full rounded shadow appearance-none py-2 px-4 leading-tight transition duration-200! focus:outline-none`}
+	${tw`w-full rounded shadow appearance-none py-2 px-4 leading-tight transition duration-200 focus:outline-none`}
 	background: ${({ theme }) => `${theme.background}`};
 	${({ invalid }) => invalid && tw`border border-red-500`}
 	:disabled {

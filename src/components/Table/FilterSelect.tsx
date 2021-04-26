@@ -1,12 +1,11 @@
-import { useEffect, useCallback, useRef } from "react"
-import { motion } from "framer-motion"
-import { Styles } from "react-select"
-import Select from "react-select"
-import { useIntl } from "react-intl"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes"
-import { useFiltersSelector, useFiltersAction } from "./store"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { motion } from "framer-motion"
+import { useCallback, useEffect, useRef } from "react"
+import { useIntl } from "react-intl"
+import Select, { Styles } from "react-select"
 import tw, { css } from "twin.macro"
+import { useFiltersAction, useFiltersSelector } from "./store"
 
 export interface CustomOption {
 	label: string
@@ -104,7 +103,7 @@ export const FilterSelect = ({ tabIndex, label, options, styles, isMulti, onChan
 			{!focus && (
 				<motion.button
 					css={[
-						tw`transition ease-in-out! duration-200! rounded bg-blue-500 text-white leading-none px-4 py-2`,
+						tw`transition ease-in-out duration-200 rounded bg-blue-500 text-white leading-none px-4 py-2`,
 						css`
 							:hover,
 							:focus {

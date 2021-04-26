@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useRef, useCallback } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars"
-import { FormattedMessage } from "react-intl"
-import Modal from "~/components/Modal"
-import { startOfDay, endOfDay, subDays } from "date-fns"
-import { CustomDateRangePicker, DateRange } from "~/components/DateRangePicker"
-import PromptModal from "~/components/PromptModal"
-import { RippleButton } from "~/components/Button"
-import Page from "~/components/Page"
-import tw, { css } from "twin.macro"
-import { FormGroup, Label, Field, InputText, ErrorMessage } from "~/components/Form"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { endOfDay, startOfDay, subDays } from "date-fns"
+import { useCallback, useRef, useState } from "react"
 import { useForm } from "react-hook-form"
+import { FormattedMessage } from "react-intl"
+import tw, { css } from "twin.macro"
+import { RippleButton } from "~/components/Button"
+import { CustomDateRangePicker, DateRange } from "~/components/DateRangePicker"
+import { ErrorMessage, Field, FormGroup, InputText, Label } from "~/components/Form"
+import Modal from "~/components/Modal"
+import Page from "~/components/Page"
+import PromptModal from "~/components/PromptModal"
 import Skeleton from "~/components/Skeleton"
 import Spinner from "~/components/Spinner"
 
@@ -173,7 +173,7 @@ export default function ComponentsPage() {
 				<CustomDateRangePicker
 					tw="font-normal capitalize py-2 px-3 rounded"
 					css={css`
-						${tw`bg-blue-500 text-white  transition ease-in-out! duration-200!`}
+						${tw`bg-blue-500 text-white  transition ease-in-out duration-200`}
 						:focus {
 							box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 							${tw`outline-none`}

@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default styled.input<Props>`
-	${tw`rounded-lg py-2 px-4 block w-full transition ease-in-out! duration-200!`}
+	${tw`rounded-lg py-2 px-4 block w-full transition ease-in-out duration-200`}
 	& ~ [aria-label="invalid-message"] {
 		${tw`mt-1 text-red-500 text-xs italic`}
 	}

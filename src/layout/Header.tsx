@@ -38,7 +38,7 @@ export default function Header({ height }: Props) {
 			>
 				<FontAwesomeIcon icon={faBars} />
 			</motion.button>
-			<div tw="flex-grow flex justify-end px-3">
+			<div tw="flex-grow flex justify-end px-3 opacity-0">
 				<div tw="mr-3">
 					<DarkModeToggle />
 				</div>

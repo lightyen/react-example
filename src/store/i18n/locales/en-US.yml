@@ -32,3 +32,4 @@ nav_editor: Editor
 nav_carousel: Carousel
 nav_color_picker: Color Picker
 invalid_required: Value is required
+upload_file: Upload File

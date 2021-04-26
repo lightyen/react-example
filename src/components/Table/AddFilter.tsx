@@ -7,7 +7,7 @@ import Select from "react-select"
 import tw, { styled } from "twin.macro"
 
 const AddFilerButton = styled.button`
-	${tw`transition ease-in-out! duration-200! rounded bg-green-500 px-4 py-2 text-white font-bold leading-none whitespace-nowrap`}
+	${tw`transition ease-in-out duration-200 rounded bg-green-500 px-4 py-2 text-white font-bold leading-none whitespace-nowrap`}
 
 	:hover, :focus {
 		box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.5);

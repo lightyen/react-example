@@ -1,12 +1,10 @@
-import { useRef } from "react"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSun } from "@fortawesome/free-solid-svg-icons/faSun"
 import { faMoon } from "@fortawesome/free-solid-svg-icons/faMoon"
-import { useAction, useSelector } from "~/store/hooks"
-import { v4 as uuidv4 } from "uuid"
-
+import { faSun } from "@fortawesome/free-solid-svg-icons/faSun"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useRef } from "react"
 import tw, { styled } from "twin.macro"
+import { v4 as uuidv4 } from "uuid"
+import { useAction, useSelector } from "~/store/hooks"
 
 const Check = styled.input`
 	display: none;
@@ -16,7 +14,7 @@ const Slider = styled.label`
 	width: 3.6rem;
 	height: 1.5rem;
 	border-radius: 9999px;
-	${tw`transition ease-in-out! duration-200!`}
+	${tw`transition ease-in-out duration-200`}
 
 	position: relative;
 	display: flex;
@@ -35,7 +33,7 @@ const Slider = styled.label`
 
 	&::after {
 		content: "";
-		${tw`transition ease-in-out! duration-200!`}
+		${tw`transition ease-in-out! duration-200`}
 		width: 1.2rem;
 		height: 1.2rem;
 		top: 0.15rem;

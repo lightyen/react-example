@@ -1,8 +1,8 @@
 import { eventChannel } from "redux-saga"
-import { take, fork, put } from "redux-saga/effects"
-import { BreakingPoint } from "./model"
-import { setBreakingPoint } from "./action"
+import { fork, put, take } from "redux-saga/effects"
 import { theme } from "twin.macro"
+import { setBreakingPoint } from "./action"
+import { BreakingPoint } from "./model"
 
 const breakingPointChannel = (query: string, match: BreakingPoint, noMatch: BreakingPoint) =>
 	eventChannel<BreakingPoint>(emit => {

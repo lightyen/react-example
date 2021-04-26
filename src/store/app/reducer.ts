@@ -1,7 +1,7 @@
-import { BreakingPoint } from "./model"
 import { createReducer } from "@reduxjs/toolkit"
-import { setBreakingPoint, setSidebarVisible } from "./action"
 import { theme } from "twin.macro"
+import { setBreakingPoint, setSidebarVisible } from "./action"
+import { BreakingPoint } from "./model"
 
 export interface AppStore {
 	breakpoint: BreakingPoint

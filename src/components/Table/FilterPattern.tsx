@@ -1,12 +1,12 @@
-import { useEffect, useRef } from "react"
-import { motion } from "framer-motion"
-import { useIntl } from "react-intl"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes"
 import { faBackspace } from "@fortawesome/free-solid-svg-icons/faBackspace"
-import { useFiltersSelector, useFiltersAction } from "./store"
-import { NormalInput } from "./NormalInput"
+import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { motion } from "framer-motion"
+import { useEffect, useRef } from "react"
+import { useIntl } from "react-intl"
 import tw, { css, styled } from "twin.macro"
+import { NormalInput } from "./NormalInput"
+import { useFiltersAction, useFiltersSelector } from "./store"
 
 const CloseButton = styled.div`
 	position: absolute;
@@ -104,7 +104,7 @@ export const FilterPattern = ({ tabIndex, label, onChange, onCancel, id, fid }: 
 			{!focus && (
 				<motion.button
 					css={css`
-						${tw`transition ease-in-out! duration-200! rounded bg-blue-500 text-white leading-none px-4 py-2`}
+						${tw`transition ease-in-out! duration-200 rounded bg-blue-500 text-white leading-none px-4 py-2`}
 						:hover,:focus {
 							box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 							${tw`outline-none`}
