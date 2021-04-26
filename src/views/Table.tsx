@@ -1,11 +1,10 @@
-import { Table, withTextRegexp } from "~/components/Table"
-import { useIntl, FormattedMessage } from "react-intl"
 import chroma from "chroma-js"
-import { useSelector } from "~/store/hooks"
-import type { BreakingPoint } from "~/store/app/model"
-import { Column, register } from "~/components/Table"
-import Page from "~/components/Page"
+import { FormattedMessage, useIntl } from "react-intl"
 import tw from "twin.macro"
+import Page from "~/components/Page"
+import { Column, register, Table, withTextRegexp } from "~/components/Table"
+import type { BreakingPoint } from "~/store/app/types"
+import { useSelector } from "~/store/hooks"
 
 register("#mytable")
 

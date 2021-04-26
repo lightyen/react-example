@@ -1,10 +1,10 @@
 import { eventChannel } from "redux-saga"
 import { fork, put, take } from "redux-saga/effects"
 import { theme } from "twin.macro"
-import { setBreakingPoint } from "./action"
-import { BreakingPoint } from "./model"
+import * as ac from "./action"
+import type { BreakingPoint } from "./types"
 
-const breakingPointChannel = (query: string, match: BreakingPoint, noMatch: BreakingPoint) =>
+const bpChan = (query: string, noMatch: BreakingPoint, match: BreakingPoint) =>
 	eventChannel<BreakingPoint>(emit => {
 		const mql = window.matchMedia(query)
 		const cb = (e: MediaQueryListEvent) => (e.matches ? emit(match) : emit(noMatch))
@@ -12,41 +12,27 @@ const breakingPointChannel = (query: string, match: BreakingPoint, noMatch: Brea
 		return () => mql.removeEventListener("change", cb)
 	})
 
-function* responsive_sm() {
-	const chan = breakingPointChannel(`(min-width: ${theme`screens.sm`})`, "sm", "xs")
-	while (true) {
-		const breakpoint: BreakingPoint = yield take(chan)
-		yield put(setBreakingPoint({ breakpoint }))
+function responsive(query: string, noMatch: BreakingPoint, match: BreakingPoint) {
+	return function* () {
+		const chan = bpChan(query, noMatch, match)
+		while (true) {
+			yield put(ac.setBreakingPoint(yield take(chan)))
+		}
 	}
 }
 
-function* responsive_md() {
-	const chan = breakingPointChannel(`(min-width: ${theme`screens.md`})`, "md", "sm")
+function* log() {
 	while (true) {
-		const breakpoint: BreakingPoint = yield take(chan)
-		yield put(setBreakingPoint({ breakpoint }))
-	}
-}
-
-function* responsive_lg() {
-	const chan = breakingPointChannel(`(min-width: ${theme`screens.lg`})`, "lg", "md")
-	while (true) {
-		const breakpoint: BreakingPoint = yield take(chan)
-		yield put(setBreakingPoint({ breakpoint }))
-	}
-}
-
-function* responsive_xl() {
-	const chan = breakingPointChannel(`(min-width: ${theme`screens.xl`})`, "xl", "lg")
-	while (true) {
-		const breakpoint: BreakingPoint = yield take(chan)
-		yield put(setBreakingPoint({ breakpoint }))
+		const action = yield take(ac.setBreakingPoint)
+		console.log(action.payload)
 	}
 }
 
 export default function* saga() {
-	yield fork(responsive_sm)
-	yield fork(responsive_md)
-	yield fork(responsive_lg)
-	yield fork(responsive_xl)
+	yield fork(responsive(`(min-width: ${theme`screens.sm`})`, "xs", "sm"))
+	yield fork(responsive(`(min-width: ${theme`screens.md`})`, "sm", "md"))
+	yield fork(responsive(`(min-width: ${theme`screens.lg`})`, "md", "lg"))
+	yield fork(responsive(`(min-width: ${theme`screens.xl`})`, "lg", "xl"))
+	yield fork(responsive(`(min-width: ${theme`screens.2xl`})`, "xl", "2xl"))
+	yield fork(log)
 }

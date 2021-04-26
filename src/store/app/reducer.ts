@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit"
 import { theme } from "twin.macro"
 import { setBreakingPoint, setSidebarVisible } from "./action"
-import { BreakingPoint } from "./model"
+import type { BreakingPoint } from "./types"
 
 export interface AppStore {
 	breakpoint: BreakingPoint
@@ -9,8 +9,10 @@ export interface AppStore {
 	sidebarVisible: boolean
 }
 
-function getBreakPoint(): BreakingPoint {
-	if (window.matchMedia(`(min-width: ${theme`screens.xl`})`).matches) {
+function getBreakingPoint(): BreakingPoint {
+	if (window.matchMedia(`(min-width: ${theme`screens.2xl`})`).matches) {
+		return "2xl"
+	} else if (window.matchMedia(`(min-width: ${theme`screens.xl`})`).matches) {
 		return "xl"
 	} else if (window.matchMedia(`(min-width: ${theme`screens.lg`})`).matches) {
 		return "lg"
@@ -23,19 +25,17 @@ function getBreakPoint(): BreakingPoint {
 }
 
 const init: AppStore = {
-	breakpoint: getBreakPoint(),
+	breakpoint: getBreakingPoint(),
 	collapsed: window.matchMedia(`(max-width: ${theme`screens.lg`})`).matches,
 	sidebarVisible: false,
 }
 
 export const app = createReducer(init, builder =>
 	builder
-		.addCase(setBreakingPoint, (state, { payload: { breakpoint } }) => {
+		.addCase(setBreakingPoint, (state, { payload }) => {
 			// auto immutable when mutate
-			state.breakpoint = breakpoint
-			state.collapsed = state.sidebarVisible
-				? false
-				: breakpoint === "xs" || breakpoint === "sm" || breakpoint === "md"
+			state.breakpoint = payload
+			state.collapsed = state.sidebarVisible ? false : payload === "xs" || payload === "sm" || payload === "md"
 		})
 		.addCase(setSidebarVisible, (state, { payload: { visible } }) => {
 			state.sidebarVisible = visible
