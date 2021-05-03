@@ -57,12 +57,14 @@ const globalStyle = css`
 	}
 `
 
-console.log("create history")
-const history = createBrowserHistory()
+function HistoryRouter({ children }: React.PropsWithChildren<{}>) {
+	const history = useSelector(state => state.history.history)
+	return <Router history={history}>{children}</Router>
+}
 
 function StoreProvider({ children }: { children?: React.ReactNode }) {
 	return (
-		<ReactReduxProvider context={AppStoreContext} store={makeStore(history)}>
+		<ReactReduxProvider context={AppStoreContext} store={makeStore(createBrowserHistory())}>
 			{children}
 		</ReactReduxProvider>
 	)
@@ -84,16 +86,16 @@ function LanguageProvider({ children }: { children?: React.ReactNode }) {
 
 export default function App() {
 	return (
-		<Router history={history}>
-			<StoreProvider>
-				<GlobalStyles />
-				<Global styles={globalStyle} />
-				<StyledThemeProvider>
-					<LanguageProvider>
+		<StoreProvider>
+			<GlobalStyles />
+			<Global styles={globalStyle} />
+			<StyledThemeProvider>
+				<LanguageProvider>
+					<HistoryRouter>
 						<AppLayout />
-					</LanguageProvider>
-				</StyledThemeProvider>
-			</StoreProvider>
-		</Router>
+					</HistoryRouter>
+				</LanguageProvider>
+			</StyledThemeProvider>
+		</StoreProvider>
 	)
 }
