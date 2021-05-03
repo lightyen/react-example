@@ -21,7 +21,15 @@ export function makeStore(history: History) {
 		devTools: process.env.NODE_ENV === "development" ? { name: "react is awesome" } : false,
 	})
 
-	sagaMiddleware.run(rootSaga)
+	let saga = sagaMiddleware.run(rootSaga)
+
+	module.hot.accept("./saga", () => {
+		// eslint-disable-next-line @typescript-eslint/no-var-requires
+		const root = require("./saga")
+		saga?.cancel()
+		saga = null
+		saga = sagaMiddleware.run(root)
+	})
 
 	// if (module.hot) {
 	// 	module.hot.accept("~/store/reducer", () => {
@@ -46,6 +54,5 @@ export function makeStore(history: History) {
 	// 		epic$.next(nextRootEpic)
 	// 	})
 	// }
-
 	return store
 }
