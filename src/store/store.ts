@@ -23,13 +23,22 @@ export function makeStore(history: History) {
 
 	let saga = sagaMiddleware.run(rootSaga)
 
-	module.hot.accept("./saga", () => {
-		// eslint-disable-next-line @typescript-eslint/no-var-requires
-		const root = require("./saga")
-		saga?.cancel()
-		saga = null
-		saga = sagaMiddleware.run(root)
-	})
+	if (module.hot) {
+		module.hot.accept("./reducer", () => {
+			// eslint-disable-next-line @typescript-eslint/no-var-requires
+			store.replaceReducer(require("./reducer")(history))
+		})
+
+		module.hot.accept("./saga", () => {
+			// eslint-disable-next-line @typescript-eslint/no-var-requires
+			const root = require("./saga")
+			saga?.cancel()
+			saga = null
+			saga = sagaMiddleware.run(root)
+		})
+	}
+
+	// NOTE: The statement 'module.hot?.accept' is not working.
 
 	// if (module.hot) {
 	// 	module.hot.accept("~/store/reducer", () => {

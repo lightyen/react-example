@@ -1,7 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit"
+import dayjs from "dayjs"
+import "dayjs/locale/en"
+import "dayjs/locale/zh-tw"
+import localizedFormat from "dayjs/plugin/localizedFormat"
 import { setLocale } from "./action"
-import { getLocale, storeLocale } from "./languages"
 import type { Locale } from "./languages"
+import { getLocale, storeLocale } from "./languages"
 
 interface I18nStoreType {
 	enable: boolean
@@ -17,10 +21,6 @@ const init: I18nStore = {
 
 window.__locale__ = getLocale()
 
-import "dayjs/locale/en"
-import "dayjs/locale/zh-tw"
-import localizedFormat from "dayjs/plugin/localizedFormat"
-import dayjs from "dayjs"
 dayjs.extend(localizedFormat)
 dayjs.locale(window.__locale__.toLocaleLowerCase())
 
