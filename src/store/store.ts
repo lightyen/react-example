@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit"
-import reducer from "./reducer"
+import { History } from "history"
 import createSagaMiddleware from "redux-saga"
+import createReducer from "./reducer"
 import rootSaga from "./saga"
-
 // import { RootStore } from "./reducer"
 // import { createEpicMiddleware } from "redux-observable"
 // import { rootEpic } from "~/store/epic"
@@ -10,12 +10,12 @@ import rootSaga from "./saga"
 // import { BehaviorSubject } from "rxjs"
 // import { RootAction } from "./epic"
 
-export function makeStore() {
+export function makeStore(history: History) {
 	const sagaMiddleware = createSagaMiddleware()
 	// const epicMiddleware = createEpicMiddleware<RootAction, RootAction, RootStore>()
 
 	const store = configureStore({
-		reducer,
+		reducer: createReducer(history),
 		middleware: [sagaMiddleware],
 		preloadedState: undefined,
 		devTools: process.env.NODE_ENV === "development" ? { name: "react is awesome" } : false,

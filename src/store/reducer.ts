@@ -1,15 +1,17 @@
 import { combineReducers } from "@reduxjs/toolkit"
-
-import { AppStore, app } from "./app/reducer"
-import { ThemeStore, theme } from "./theme/reducer"
-import { I18nStore, i18n } from "./i18n/reducer"
-import { DataStore, data } from "./data/reducer"
+import { History } from "history"
+import { app, AppStore } from "./app/reducer"
+import { data, DataStore } from "./data/reducer"
+import { createHistoryReducer, HistoryStore } from "./history/reducer"
+import { i18n, I18nStore } from "./i18n/reducer"
+import { theme, ThemeStore } from "./theme/reducer"
 
 interface RootStoreType {
 	app: AppStore
 	theme: ThemeStore
 	i18n: I18nStore
 	data: DataStore
+	history: HistoryStore
 }
 
 type DeepReadonly<T> = {
@@ -18,9 +20,12 @@ type DeepReadonly<T> = {
 
 export type RootStore = DeepReadonly<RootStoreType>
 
-export default combineReducers({
-	app,
-	theme,
-	i18n,
-	data,
-})
+export default function createReducer(history: History) {
+	return combineReducers({
+		app,
+		theme,
+		i18n,
+		data,
+		history: createHistoryReducer(history),
+	})
+}

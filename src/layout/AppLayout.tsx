@@ -1,10 +1,10 @@
-import { BrowserRouter, RouteProps, RedirectProps, Redirect, Route, Switch } from "react-router-dom"
 import { motion } from "framer-motion"
-import Sidebar from "./Sidebar"
-import Header from "./Header"
-import AppMain from "./AppMain"
-import Login from "~/pages/Login"
+import { Redirect, RedirectProps, Route, RouteProps, Switch } from "react-router-dom"
 import Page404 from "~/pages/404"
+import Login from "~/pages/Login"
+import AppMain from "./AppMain"
+import Header from "./Header"
+import Sidebar from "./Sidebar"
 
 function MotionRedirect({ children, ...props }: React.PropsWithChildren<RedirectProps>) {
 	return (
@@ -26,7 +26,7 @@ function NoAuthenticatedRoute({ children, ...rest }: React.PropsWithChildren<Rou
 	return <Route {...rest}>{!isAuthenticated() ? children : <MotionRedirect to="/" />}</Route>
 }
 
-function AppLayout() {
+function Layout() {
 	const h = 45
 	const w = 246
 	return (
@@ -38,7 +38,7 @@ function AppLayout() {
 	)
 }
 
-function AppRouter() {
+export default function AppSwitch() {
 	return (
 		<Switch>
 			<Route path="/404" exact>
@@ -48,16 +48,8 @@ function AppRouter() {
 				<Login />
 			</NoAuthenticatedRoute>
 			<AuthenticatedRoute path="/">
-				<AppLayout />
+				<Layout />
 			</AuthenticatedRoute>
 		</Switch>
-	)
-}
-
-export default function Router() {
-	return (
-		<BrowserRouter>
-			<AppRouter />
-		</BrowserRouter>
 	)
 }

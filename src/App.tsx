@@ -1,7 +1,9 @@
 import { Global, ThemeProvider } from "@emotion/react"
 import FiraCodeFont from "assets/fonts/FiraCode-Regular.woff2"
+import { createBrowserHistory } from "history"
 import { IntlProvider } from "react-intl"
 import { Provider as ReactReduxProvider } from "react-redux"
+import { Router } from "react-router-dom"
 import tw, { css, GlobalStyles } from "twin.macro"
 import AppLayout from "~/layout/AppLayout"
 import { AppStoreContext, useSelector } from "~/store/hooks"
@@ -57,10 +59,15 @@ const globalStyle = css`
 
 function StoreProvider({ children }: { children?: React.ReactNode }) {
 	return (
-		<ReactReduxProvider context={AppStoreContext} store={makeStore()}>
+		<ReactReduxProvider context={AppStoreContext} store={makeStore(createBrowserHistory())}>
 			{children}
 		</ReactReduxProvider>
 	)
+}
+
+function HistoryRouter({ children }: React.PropsWithChildren<{}>) {
+	const history = useSelector(state => state.history.history)
+	return <Router history={history}>{children}</Router>
 }
 
 function StyledThemeProvider({ children }: { children?: React.ReactNode }) {
@@ -84,7 +91,9 @@ export default function App() {
 			<Global styles={globalStyle} />
 			<StyledThemeProvider>
 				<LanguageProvider>
-					<AppLayout />
+					<HistoryRouter>
+						<AppLayout />
+					</HistoryRouter>
 				</LanguageProvider>
 			</StyledThemeProvider>
 		</StoreProvider>
