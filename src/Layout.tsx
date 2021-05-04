@@ -1,10 +1,11 @@
 import { motion } from "framer-motion"
 import { Redirect, RedirectProps, Route, RouteProps, Switch } from "react-router-dom"
+import AppMain from "~/layout/AppMain"
+import Header from "~/layout/Header"
+import Sidebar from "~/layout/Sidebar"
 import Page404 from "~/pages/404"
 import Login from "~/pages/Login"
-import AppMain from "./AppMain"
-import Header from "./Header"
-import Sidebar from "./Sidebar"
+import { useReduxHistory } from "~/redux.router"
 
 function MotionRedirect({ children, ...props }: React.PropsWithChildren<RedirectProps>) {
 	return (
@@ -39,6 +40,7 @@ function Layout() {
 }
 
 export default function AppSwitch() {
+	useReduxHistory()
 	return (
 		<Switch>
 			<Route path="/404" exact>

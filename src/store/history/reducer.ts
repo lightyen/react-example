@@ -1,10 +1,23 @@
 import { createReducer } from "@reduxjs/toolkit"
-import type { History } from "history"
+import { Action, History, Location, parsePath } from "history"
+import { onListen, push } from "./action"
 
 export interface HistoryStore {
-	history: History
+	location?: Location
+	action?: Action
 }
 
 export function createHistoryReducer(history: History) {
-	return createReducer({ history }, builder => builder)
+	const init: HistoryStore = { location: history.location }
+	return createReducer(init, builder =>
+		builder
+			.addCase(onListen, (state, { payload }) => {
+				state.location = payload
+				state.action = null
+			})
+			.addCase(push, (state, { payload }) => {
+				state.location = parsePath(payload)
+				state.action = "PUSH"
+			}),
+	)
 }

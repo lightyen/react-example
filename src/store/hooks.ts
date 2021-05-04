@@ -3,6 +3,7 @@ import { createContext, useMemo } from "react"
 import { createDispatchHook, createSelectorHook, createStoreHook, ReactReduxContextValue } from "react-redux"
 import app from "~/store/app/action"
 import data from "~/store/data/action"
+import history from "~/store/history/action"
 import i18n from "~/store/i18n/action"
 import theme from "~/store/theme/action"
 import { RootStore } from "./reducer"
@@ -20,6 +21,7 @@ export function useAction() {
 			theme: bindActionCreators(theme, dispatch),
 			i18n: bindActionCreators(i18n, dispatch),
 			data: bindActionCreators(data, dispatch),
+			history: bindActionCreators(history, dispatch),
 		}),
 		[dispatch],
 	)
