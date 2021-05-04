@@ -126,6 +126,34 @@ const ModalButton2 = () => {
 	)
 }
 
+function copyToClipboardSync(text: string) {
+	const el = document.createElement("textarea")
+	el.style.position = "fixed"
+	el.style.top = "0"
+	el.style.left = "0"
+	el.value = text
+	try {
+		document.body.appendChild(el)
+		el.select()
+		let ok = document.execCommand("copy")
+		if (!ok) {
+			console.error("Failed: copy text to clipboard")
+		}
+	} catch (err) {
+		console.error("Failed: copy text to clipboard")
+	} finally {
+		document.body.removeChild(el)
+	}
+}
+
+async function copyToClipboard(text: string) {
+	try {
+		await window.navigator.clipboard.writeText(text)
+	} catch (err) {
+		console.error("Failed: copy text to clipboard")
+	}
+}
+
 export default function ComponentsPage() {
 	const [dateRange, setDateRange] = useState<DateRange>(() => {
 		const now = new Date()
@@ -170,14 +198,7 @@ export default function ComponentsPage() {
 				<RippleButton
 					tw="w-full block mr-3 mb-2"
 					onClick={() => {
-						const el = document.createElement("input")
-						el.value = "Text Example"
-						el.style.position = "absolute"
-						el.style.opacity = "0"
-						document.body.appendChild(el)
-						el.select()
-						document.execCommand("copy")
-						document.body.removeChild(el)
+						copyToClipboard("Text Example")
 					}}
 				>
 					Copy "Text Example" to Clipboard
