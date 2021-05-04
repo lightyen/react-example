@@ -7,7 +7,7 @@ interface Props {
 
 const Button = styled.button<Props>(({ variant = "gray" }) => {
 	return [
-		tw`py-3 px-6 rounded text-white leading-none relative overflow-hidden transition ease-in-out duration-200`,
+		tw`py-3 px-6 rounded text-white leading-none relative overflow-hidden transition`,
 		variant === "gray" &&
 			css`
 				${tw`bg-gray-700 text-white

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { faCopy } from "@fortawesome/free-regular-svg-icons/faCopy"
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { endOfDay, startOfDay, subDays } from "date-fns"
@@ -164,6 +165,25 @@ export default function ComponentsPage() {
 				<RippleButton variant="yellow" tw="inline-flex mr-2 mb-2">
 					<FontAwesomeIcon tw="mr-2" icon={faBars} />
 					<FormattedMessage id="button" />
+				</RippleButton>
+
+				<RippleButton
+					tw="w-full block mr-3 mb-2"
+					onClick={() => {
+						const el = document.createElement("input")
+						el.value = "Text Example"
+						el.style.position = "absolute"
+						el.style.opacity = "0"
+						document.body.appendChild(el)
+						el.select()
+						document.execCommand("copy")
+						document.body.removeChild(el)
+					}}
+				>
+					Copy "Text Example" to Clipboard
+					<i tw="pl-3">
+						<FontAwesomeIcon icon={faCopy} />
+					</i>
 				</RippleButton>
 			</div>
 			<SectionHeader>Skeleton</SectionHeader>
