@@ -21,6 +21,13 @@ export function useReduxHistory() {
 		switch (action) {
 			case "PUSH":
 				history.push(path)
+				break
+			case "REPLACE":
+				history.replace(path)
+				break
+			case "POP":
+				history.goBack()
+				break
 		}
 	}, [path, action])
 }

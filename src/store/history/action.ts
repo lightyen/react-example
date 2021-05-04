@@ -7,5 +7,7 @@ function withPayloadType<T>() {
 
 export const onListen = createAction("@@router/listen", withPayloadType<Location>())
 export const push = createAction("@@router/push", withPayloadType<Path>())
+export const back = createAction("@@router/back")
+export const replace = createAction("@@router/replace", withPayloadType<Path>())
 
 export default { onListen }
