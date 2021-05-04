@@ -130,7 +130,11 @@ export default function ComponentsPage() {
 		const now = new Date()
 		return { startDate: startOfDay(subDays(now, 2)), endDate: endOfDay(now) }
 	})
-	const { register, handleSubmit, errors } = useForm<Data>()
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<Data>()
 	const [value, setValue] = useState("")
 	const debounceChange = useDebounce(e => setValue(e), 500)
 
@@ -224,11 +228,10 @@ export default function ComponentsPage() {
 					<Label>Name</Label>
 					<Field>
 						<InputText
-							name="test"
 							placeholder="placeholder"
 							spellCheck="false"
 							invalid={!!errors.test}
-							ref={register({
+							{...register("test", {
 								required: { value: true, message: "Value is required." },
 								// validate: debounceValidate(data => {
 								// 	if (!data) {
