@@ -76,6 +76,7 @@
     "worker-loader": "3.0.8"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.13.0",
     "@emotion/babel-plugin": "11.3.0",
     "@emotion/eslint-plugin": "11.2.0",
     "@emotion/react": "11.1.5",

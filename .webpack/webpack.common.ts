@@ -1,12 +1,11 @@
-import path from "path"
-import glob from "glob"
-import type { Configuration } from "webpack"
-
-import { EnvironmentPlugin } from "webpack"
-import HtmlWebpackPlugin from "html-webpack-plugin"
 import ForkTsCheckerPlugin from "fork-ts-checker-webpack-plugin"
-import TsPathsResolvePlugin from "ts-paths-resolve-plugin"
+import glob from "glob"
+import HtmlWebpackPlugin from "html-webpack-plugin"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
+import path from "path"
+import TsPathsResolvePlugin from "ts-paths-resolve-plugin"
+import type { Configuration } from "webpack"
+import { EnvironmentPlugin } from "webpack"
 import WebpackBar from "webpackbar"
 
 const workspaceFolder = path.resolve(__dirname, "..")
@@ -48,29 +47,29 @@ const config: Configuration = {
 	// },
 	module: {
 		rules: [
+			// {
+			// 	test: /\.tsx?$/,
+			// 	exclude: /node_modules|__tests?__|\.test\.tsx?$|\.worker\.ts$/,
+			// 	use: [
+			// 		"babel-loader",
+			// 		{
+			// 			loader: "ts-loader",
+			// 			options: { context: path.join(workspaceFolder, "src"), happyPackMode: true },
+			// 		},
+			// 	],
+			// },
 			{
-				test: /\.tsx?$/,
-				exclude: /node_modules|__tests?__|\.test\.tsx?$|\.worker\.ts$/,
-				use: [
-					"babel-loader",
-					{
-						loader: "ts-loader",
-						options: { context: path.join(workspaceFolder, "src"), happyPackMode: true },
-					},
-				],
-			},
-			{
-				test: /\.jsx?$/,
-				exclude: /node_modules|__tests?__|\.test\.jsx?$|\.worker\.js$/,
+				test: /\.(j|t)sx?$/,
+				exclude: /node_modules|__tests?__|\.test\.(j|t)sx?$|\.worker\.(j|t)s$/,
 				use: ["babel-loader"],
 			},
+			// {
+			// 	test: /\.worker\.ts$/,
+			// 	exclude: /node_modules/,
+			// 	use: ["worker-loader", "babel-loader", { loader: "ts-loader", options: { happyPackMode: true } }],
+			// },
 			{
-				test: /\.worker\.ts$/,
-				exclude: /node_modules/,
-				use: ["worker-loader", "babel-loader", { loader: "ts-loader", options: { happyPackMode: true } }],
-			},
-			{
-				test: /\.worker\.js$/,
+				test: /\.worker\.(j|t)s$/,
 				exclude: /node_modules/,
 				use: ["worker-loader", "babel-loader"],
 			},
