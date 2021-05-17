@@ -1,6 +1,6 @@
 import { animated, Globals, useSpring } from "@react-spring/web"
 import "dayjs/locale/zh-tw"
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { FormattedMessage } from "react-intl"
 import "twin.macro"
 import ReactLogo from "~/assets/logo.svg"
@@ -14,7 +14,6 @@ function A() {
 	const [open, toggle] = useState(false)
 	const width = 256
 	const props = useSpring({ width: open ? width : 0 })
-	const ref = useRef<HTMLInputElement>(null)
 	return (
 		<div tw="">
 			<div tw="w-64 relative" onClick={() => toggle(!open)}>
