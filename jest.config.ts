@@ -1,5 +1,4 @@
 import { pathsToModuleNameMapper } from "ts-jest/utils"
-import tsjPreset from "ts-jest/presets"
 import { compilerOptions } from "./tsconfig.test.json"
 export default {
 	preset: "ts-jest",
@@ -13,9 +12,6 @@ export default {
 			"<rootDir>/src/__mocks__/fileMock.ts",
 		"\\.(css|less|scss)$": "<rootDir>/src/__mocks__/styleMock.ts",
 		...pathsToModuleNameMapper(compilerOptions.paths, { prefix: "<rootDir>" }),
-	},
-	transform: {
-		...tsjPreset.transform,
 	},
 	globals: {
 		"ts-jest": {
